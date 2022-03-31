@@ -1,0 +1,136 @@
+VARIAS TABLAS
+SELECT EMP.EMPN, DEPT.... FROM EMP, DEPT WHERE EMP.DEPT=DEPT.DEPTN (ESTO ES DISTINTO PQ NOS MUESTRA TODOS LOS DATOS, ADEMÁS TENDRÍAMOS QUE PONER ALIAS PQ TIENEN EL MISMO NOMBRE
+productos cartesianos es mal, pq crea bucles infinitos
+
+equijoin= vamos a unir a través de dos campos que son iguales, ejemplo (DEPT Y DEPT)
+
+además si queremos añadir condiciones pondremos dsp del where el and, ejemplo:
+
+ejemplo del power point "definieremos condiciones adicionales busqueda suuadno el operador AND"
+empleado cuyo nombre sea "sale", quiero que me muestre el nñúmero de empleado y el nombre.
+
+SELECT  e.empno, e.name   
+FROM EMP e, DEPT d 
+WHERE [IMPORTANTE PARA QUE NO HYA CARTESIANO] e depto, d depto 
+AND d.dnamen like 'SALES'; [SI queremos otra condiciones poddemos volver a poner AND o OR]
+
+SI ponemos los alias (son "e" y "d") pondremos el alias antes, y si no, pondremos el nombre de la tabla
+
+DE la página "UNIR MAS DE DOS TABLAS" ejemplo
+
+Queremos obtener el nombre dcel cliente, con los items solicitados 
+
+SELECT c.NAME, i.ITEMID
+FROM CUSTOMER c, ORD o, ITEM i
+WHERE c.custid = o.custid 
+AND o.ordid =c.ordid;
+AND c.name kuje 'rocksport'; [si quisieramos añadir algo más]
+
+
+NON-EQUIJOINS
+
+SELECT e.ename, e.sal,s.grade
+FROM emp e, salgrade s
+WHERE e.sal
+BETWEEN s.losal AND s.hisal;
+
+
+
+OUTER JOINS
+
+
+SELECT e.ename, d. deptmo, d.dname
+FROM emp e, dept t
+WHERE e.deptno(+) = d.deptno
+ORDER BY e.deptn;
+
+Esto se pone cuando hay nulos en la tabla, para que los muestre, pq si no no lo enseñaría, y el (+) se pone en el lado que tiene los nulos, en este caso es en la taqla deptno
+EN EL SELECT SI QUEREMOS RECUPERAR TODOS LOS DATOS PODRÍAMOS PONER EL "*"
+
+SELF JOIN (reflexiva)
+
+Tenemos una única tabla, en la cual tenemos el, "es jefe" de otro empleado. (ambos de la tabla empleado)
+
+ejemplo de "join de una tabla consigo misma"
+
+SELECT work.ename||'works for'|| manager.ename
+FROM emp worker, emp manager
+WHERE worker.mgr=manager.mng?? esto último no me ha dado tiempo de copiarlo
+
+
+AGRUPACIÓN DE DATOS
+
+para obtener el maximo salario tenemos que usar una funcion de agrupamiento "max", que nos va a dar una fila que nos dice el maximo
+
+Hay varios tipos de funciones
+
+AVG media
+COUNT contar cuantos hay
+MAX para el máximo
+MIN para el minimo
+STDDEV desviación estadística 
+SUM suma
+VARIANCE varianza
+
+SELECET colum, group_function(column)
+FROM table
+WHERE condition 
+GROUP BY--
+ORDER BY..
+
+SELECT AVG(sal), MAX(sal)
+FROM emp
+WHERE job LIKE 'SALES%';
+
+SELECT COUNT(*)
+FROM emp
+WHERE deptno=30;
+
+TAMBIEN SE PODRÍA PONER COMO 
+SELECT COUNT(comm)
+FROM emp
+WHERE deptno=30;
+
+LAS FUNCIONES DE AGRUPACION SIEMPRE NOS VA A DEVOLVER UN SOLO VALOR
+
+la media me la hace si no son nulos, si queremos que tenga en cuenta los nulos tendremos que poner NVL(..., 0)
+
+SELECT AVG(NVL(comm,0))
+FROM emp;
+
+PARA AGRUPAR HACEMOS	"group_by_expression"
+
+SELECT deptno, AVG(sal)
+FROM emp
+GROUP_BY_deptno;
+
+Esto es para que nos junte por departamento, y nos enseñe la media de cada departamento, por eso usamos el group_by (suele ser nombre de columnas)
+
+SELECT deptno, AVG(sal)
+FROM emp
+GROUP_BY_deptno;
+
+POR SI NOS LO PIDE SIN EL NOMBRE, ES COMO PONE ARRIBA
+
+PARA UNIR POR MÁS DE UN GRUPO SERÍA COMO
+
+SELECT dptnpo, job....
+NO ME HA DADO TIEMPO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

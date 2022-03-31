@@ -1,0 +1,72 @@
+A ​murder​ that occurred sometime on ​Jan.15, 2018​ and that it took place in ​SQL City​.
+
+SELECT*FROM crime_scene_report
+where type='murder' AND city='SQL City' AND date='20180115';
+
+20180115	murder	Security footage shows that there were 2 witnesses. The first witness lives at the last house on "Northwestern Dr". The second witness, named Annabel, lives somewhere on "Franklin Ave".	SQL City
+
+
+SELECT*FROM person
+WHERE name like 'An%' AND address_street_name = 'Franklin Ave';
+
+id	name	license_id	address_number	address_street_name	ssn
+16371	Annabel Miller	490173	103	Franklin Ave	318771143
+
+
+
+
+SELECT*FROM interview
+WHERE person_id=16371; 
+
+person_id	transcript
+16371	I saw the murder happen, and I recognized the killer from my gym when I was working out last week on January the 9th.
+
+
+
+
+SELECT*FROM person
+WHERE address_street_name='Northwestern Dr'
+ORDER BY address_number DESC;
+
+id	name	license_id	address_number	address_street_name	ssn
+14887	Morty Schapiro	118009	4919	Northwestern Dr	111564949
+
+
+
+
+SELECT*FROM interview
+WHERE person_id=14887;
+
+14887	I heard a gunshot and then saw a man run out. He had a "Get Fit Now Gym" bag. The membership number on the bag started with "48Z". Only gold members have those bags. The man got into a car with a plate that included "H42W".
+
+
+
+SELECT*FROM drivers_license
+WHERE plate_number LIKE '%H42W%';
+
+id	age	height	eye_color	hair_color	gender	plate_number	car_make	car_model
+183779	21	65	blue		blonde		female	H42W0X	Toyota	Prius
+423327	30	70	brown		brown		male	0H42W2	Chevrolet	Spark LS
+664760	21	71	black		black		male	4H42WR	Nissan	Altima
+
+
+
+
+SELECT*FROM get_fit_now_member
+WHERE id LIKE '48Z%' AND membership_status='gold';
+
+id	person_id	name	membership_start_date	membership_status
+48Z7A	28819	Joe Germuska	20160305	gold
+48Z55	67318	Jeremy Bowers	20160101	gold
+
+
+
+SELECT*FROM person
+WHERE name='Jeremy Bowers';
+
+id	name	license_id	address_number	address_street_name	ssn
+67318	Jeremy Bowers	423327	530	Washington Pl, Apt 3A	871539279
+
+
+
+Con esto averiguamos que el asesino es Jeremy Bowers.

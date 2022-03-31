@@ -1,0 +1,3 @@
+ALTER SESSION SET"_oracle_script"=true;
+CREATE USER Ejercicio2 IDENTIFIED BY Ejercicio2;
+GRANT CONNECT, RESOURCE, DBA TO Ejercicio2;

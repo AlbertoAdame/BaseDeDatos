@@ -1,0 +1,34 @@
+AUMNO(dni, nombre, apellidos, direccion, sexo, fecha_nacimiento) siendo
+	dni es cadena no nulo,
+	nombre es cadena,
+	direccion es cadena,
+	sexo es cadena,
+	fecha_nacimiento es fecha,
+	PK(dni)
+	FK(codigo/CURSO(codigo))
+
+
+CURSO(codigo, nombre, num_horas,fecha_fin,fecha_inicio,profesor,max_alumnos) siendo
+	codigo es cadena no nulo,
+	nombre es cadena,
+	num_horas es entero no nulo,
+	fecha_fin es fecha,
+	fecha_inicio es fecha,
+	profesor es cadena,
+	max_alumnos es entero,
+	PK(nombre)
+	FK(dni/PROFESOR(dni))
+
+PROFESOR(dni, nombre, sueldo, dirección, titulacion) siendo
+	dni es cadena no nulo,
+	nombre es cadean,
+	sueldo es entero no nulo,
+	dirección es entero,
+	titulacion es entero,
+	PK(dni)
+	
+
+Está en 1FN porque todos los valores de los atributos son atómicos.
+Está en 2FN porque todos los atributos no claves dependen de la clave primaria al completo.
+Está en 3FN porque está en 2FN y los atributo que no forman parte de la clave no dependen de otros atributos
+que no son claves.

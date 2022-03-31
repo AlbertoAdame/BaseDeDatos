@@ -1,0 +1,10 @@
+EL COUNT no tiene en cuenta los valores nulos, por lo que hay que tenrlo en cuenta.
+Aasi que habria que hacer el NVL
+mirar los ejemplos de power point
+importa el orden de los groups by
+SE PUEDE PONER EL "NOT LIKE"
+las barra baja es para un hueco en el lik
+EL HAVING VA DSP DEL GROUP BY IMPORTANTEEEEEEE
+fijarse en los distinct bien
+MIRAR OUTERJOIN???
+REPASAR OUTERJOIN QUE ES LO DE PONER emp.dept(+)=dept.depm CUANDO ERA NULO, ver como ver en la tabla si hay nulos

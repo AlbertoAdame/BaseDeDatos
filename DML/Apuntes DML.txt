@@ -1,0 +1,108 @@
+INSERT INTO TABLA (ATRIBUTOS) VALUES (VALORES)
+
+**AÑADIR FECHA** TO_DATE('08/03/1999','DD/MM/YY');
+
+**VER DATOS** SELECT*FROM TABLE;
+
+**ACTUALIZAR** UPDATE TABLE SET atributo=5 WHERE atributo=2; 
+
+**ACTUALIZAR DONDE EL AÑO MAYOR QUE 2000** WHERE (EXTRACT(YEAR FROM fechaNacimiento)>2000);
+
+**ACTUALIZAR CUANDO TENGA TLFN Y NIF NO EMPIECE POR 9*** 
+UPDATE TABLE SET especialidad="Informático" WHERE telefono LIKE ('%') AND nif NOT LIKE ('9%');
+			             ¿podría ser? telefono IS NOT NULL....
+
+**BORRAR DATOS** DELETE tabla WHERE atributo=10;
+
+**PASAR TODO A MAYUSCULAS** UPDATE ALUMNO SET nombre= UPPER(nombre);
+
+**INSERTAR TABLA COMPLETA** ( CREAR LA TABLA ANTES )***
+INSERT INTO ALUMNO_BACKUP SELECT * FROM ALUMNO;
+
+**ELIMINAR PROFESORA Laura Jiménez**
+DELETE PROFESOR WHERE nombre LIKE 'Laura' AND nombre LIKE 'Jiménez';
+
+**MODIFICAR CUANDO fecha es nulo**
+UPDATE TABLE SET nombre = 'hola' WHERE fecha IS NULL;
+
+**MODIFICAR "gana" cuando sea profesor de informática, ya que ganará un 20% más**
+UPDATE PROFESOR SET gana = gana + (gana*0.2) WHERE titulo= 'Informática (WHERE titulo LIKE '%Informática%') 
+
+**VER DATOS CONCRETOS**
+SELECT * FROM USER_TAB _COLUMNS WHERE COLUMN_NAME LIKE 'CODEQUIPO'; (((PROBAR)))
+
+
+*iniciales en mayusculas
+
+ALTER TABLE JUGADORES ADD CONSTRAINT ch_jugadores_nombre CHECK (INITCAP(nombre) = nombre);
+
+CHECK (regexp_like(DNI,'[0-9]{8}[A-Z]{1}')),
+
+
+
+Copiar los datos de una tabla a otra: Queremos copiar los datos de tabla 1 a tabla 2
+
+INSERT INTO TABLA2(codigo,nombre,presupuesto,gastos)
+
+SELECT codigo,nombre,presupuesto,gastos FROM TABLA1;
+
+____________________________________________________________________________
+
+Si no nos deja borrar una fila debemos eliminar la foreign key y añadirla de nuevo añadiendo el ON DELETE CASCADE
+
+ALTER TABLE EMPLEADO DROP CONSTRAINT fk_empleado;
+
+ALTER TABLE EMPLEADO ADD CONSTRAINT fk_empleado FOREIGN KEY (codigo_departamento) REFERENCES DEPARTAMENTO(codigo) ON DELETE CASCADE;
+
+
+DELETE FROM DEPARTAMENTO WHERE nombre='Desarrollo';
+
+____________________________________________________________________________
+
+Borramos la fila proyectos de la tabla1. Ponemos el upper(nombre)=’PROYECTOS’ para que nos coja todas las opciones
+
+
+DELETE FROM TABLA1 WHERE upper(nombre)='PROYECTOS';
+
+
+____________________________________________________________________________
+
+Como crear secuencias:
+
+
+create sequence NOMBRESECUENCIA
+
+  Max value VALOR
+
+  increment by VALOR
+
+  Nocycle;
+
+
+Para ver el valor actual:
+
+SELECT NOMBRESECUENCIA.CURRVAL FROM DUAL;
+
+
+Para ver el siguiente valor:
+
+SELECT NOMBRESECUENCIA.NEXTVAL FROM DUAL;
+
+
+Para insertarlo en una tabla:
+
+INSERT INTO TABLA (codigo) VALUES (NOMBRSECUENCIA.NEXTVAL)
+
+
+Para borrar secuencias:
+
+DROP SECUENCE NOMBRESECUENCIA
+
+____________________________________________________________________________
+
+
+UPDATE TABLA SET ____ WHERE _____
+
+DELETE FROM TABLA WHERE ___
+
+
